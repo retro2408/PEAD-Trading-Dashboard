@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEAD Regression Backtest Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <h1><i class="fas fa-chart-line"></i> PEAD Dashboard</h1>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li class="active"><a href="#" data-section="overview"><i class="fas fa-home"></i> Overview</a></li>
+                    <li><a href="#" data-section="stock-details"><i class="fas fa-chart-bar"></i> Stock Details</a></li>
+                    <li><a href="#" data-section="comparison"><i class="fas fa-exchange-alt"></i> Comparison</a></li>
+                    <li><a href="#" data-section="trades"><i class="fas fa-table"></i> Trades</a></li>
+                    <li><a href="#" data-section="about"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="top-bar">
+                <div class="search-box">
+                    <input type="text" placeholder="Enter Ticker Name..." aria-label="Ticker Name">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="stock-selector">
+                    <select id="stock-select">
+                        <option value="NVDA">NVIDIA (NVDA)</option>
+                        <option value="GOOGL">Alphabet (GOOGL)</option>
+                        <option value="GS">Goldman Sachs (GS)</option>
+                        <option value="GME">GameStop (GME)</option>
+                        <option value="MSFT">Microsoft (MSFT)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Overview Section -->
+            <section id="overview" class="content-section active">
+                <div class="section-header">
+                    <h2>Overview Dashboard</h2>
+                    <p>Summary of backtest results across all stocks</p>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-title">
+                            <h3>Best Performing Stock</h3>
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="card-value" id="best-stock">NVDA</div>
+                        <div class="card-metric">Sharpe Ratio: <span id="best-sharpe">3.45</span></div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-title">
+                            <h3>Worst Performing Stock</h3>
+                            <i class="fas fa-thumbs-down"></i>
+                        </div>
+                        <div class="card-value" id="worst-stock">GS</div>
+                        <div class="card-metric">Sharpe Ratio: <span id="worst-sharpe">-21.29</span></div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-title">
+                            <h3>Average Performance</h3>
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="card-value" id="avg-sharpe">-4.62</div>
+                        <div class="card-metric">Average Sharpe Ratio</div>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Sharpe Ratio Comparison</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="sharpe-comparison-chart"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Win/Loss Ratios</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="win-loss-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Stock Details Section -->
+            <section id="stock-details" class="content-section">
+                <div class="section-header">
+                    <h2>Stock Details: <span id="selected-stock-name">NVDA</span></h2>
+                    <p>Detailed analysis of the selected stock</p>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="card small-card">
+                        <div class="card-title">
+                            <h3>Sharpe Ratio</h3>
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="card-value" id="detail-sharpe">3.45</div>
+                    </div>
+                    
+                    <div class="card small-card">
+                        <div class="card-title">
+                            <h3>Total Trades</h3>
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="card-value" id="detail-trades">39</div>
+                    </div>
+                    
+                    <div class="card small-card">
+                        <div class="card-title">
+                            <h3>Win Rate</h3>
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="card-value" id="detail-winrate">48.72%</div>
+                    </div>
+                    
+                    <div class="card small-card">
+                        <div class="card-title">
+                            <h3>Net PnL</h3>
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="card-value" id="detail-pnl">$537.39</div>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-wrapper large-chart">
+                        <div class="chart-header">
+                            <h3>Equity Curve</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="equity-curve-chart"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Trade Outcomes</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="trade-outcomes-chart"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-wrapper">
+                        <div class="chart-header">
+                            <h3>Trade Streaks</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="streaks-chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Comparison Section -->
+            <section id="comparison" class="content-section">
+                <div class="section-header">
+                    <h2>Stock Comparison</h2>
+                    <p>Compare performance metrics across all stocks</p>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>Metric:</label>
+                        <select id="comparison-metric">
+                            <option value="sharpe">Sharpe Ratio</option>
+                            <option value="winrate">Win Rate</option>
+                            <option value="pnl">Net PnL</option>
+                            <option value="trades">Total Trades</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-wrapper large-chart">
+                        <div class="chart-header">
+                            <h3>Performance Comparison</h3>
+                        </div>
+                        <div class="chart-body">
+                            <div id="comparison-chart"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <h3>Comparison Table</h3>
+                    <table id="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Stock</th>
+                                <th>Sharpe Ratio</th>
+                                <th>Total Trades</th>
+                                <th>Win Rate</th>
+                                <th>Net PnL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be filled by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Trades Section -->
+            <section id="trades" class="content-section">
+                <div class="section-header">
+                    <h2>Trade History: <span id="trades-stock-name">NVDA</span></h2>
+                    <p>Detailed trade entries for the selected stock</p>
+                </div>
+                
+                <div class="table-container" id="trades-table-container">
+                    <!-- Table will be dynamically inserted here -->
+                </div>
+            </section>
+            
+            <!-- About Section -->
+            <section id="about" class="content-section">
+                <div class="section-header">
+                    <h2>About PEAD Regression Backtesting</h2>
+                </div>
+                
+                <div class="about-content">
+                    <h3>What is PEAD?</h3>
+                    <p>Post-Earnings Announcement Drift (PEAD) refers to the tendency of a stock's price to drift in the direction of an earnings surprise for several weeks following an earnings announcement. This dashboard displays the results of a systematic backtesting approach that aims to capitalize on this phenomenon.</p>
+                    
+                    <h3>Methodology</h3>
+                    <p>Our backtesting framework applies a regression-based model to predict and trade based on expected post-earnings drift. The system analyzes historical patterns around earnings announcements and implements a trading strategy that aims to capture the drift effect.</p>
+                    
+                    <h3>Metrics Explained</h3>
+                    <div class="metrics-list">
+                        <div class="metric-item">
+                            <h4>Sharpe Ratio</h4>
+                            <p>A measure of risk-adjusted return. Higher values indicate better risk-adjusted performance.</p>
+                        </div>
+                        <div class="metric-item">
+                            <h4>Win Rate</h4>
+                            <p>The percentage of trades that resulted in a profit.</p>
+                        </div>
+                        <div class="metric-item">
+                            <h4>PnL (Profit and Loss)</h4>
+                            <p>The total profit or loss generated by the strategy. "Net PnL" accounts for trading costs.</p>
+                        </div>
+                        <div class="metric-item">
+                            <h4>Streaks</h4>
+                            <p>Consecutive winning or losing trades, which can help identify strategy consistency.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+Backtest Results Summary
+======================
+
+Generated on: 2025-04-02 16:54:59
+
+Sharpe Ratio: -21.673222163299332
+
+Total Trades: 47.0
+Won Trades: 4.0 (8.51%)
+Lost Trades: 43.0 (91.49%)
+
+Gross PnL: -12.629999999999896
+Net PnL: -93.96520999999987
+
+Current Win Streak: 0.0
+Longest Win Streak: 1.0
+Current Loss Streak: 1.0
+Longest Loss Streak: 26.0
