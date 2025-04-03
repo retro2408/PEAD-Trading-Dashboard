@@ -81,7 +81,7 @@ class EarningsTradingStrategy(bt.Strategy):
                 reported_eps = earnings['Reported EPS'].values[0]
                 estimated_surprise = (reported_eps - estimated_eps) / estimated_eps
                 regression_suprise = (reported_eps - predicted_eps_value) / predicted_eps_value
-                surprise = 0.2*regression_suprise + 0.8*estimated_surprise
+                surprise = 0.1*regression_suprise + 0.9*estimated_surprise
 
                 # Calculate position size based on $1,000 trade limit
                 current_price = self.data.close[0]
