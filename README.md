@@ -118,7 +118,6 @@ This dashboard uses:
 
 ## Future Improvements
 
-- Add data loading directly from CSV files (currently uses hardcoded data)
 - Add additional metrics and visualizations
 - Implement dark/light theme toggle
 - Add export functionality for reports
