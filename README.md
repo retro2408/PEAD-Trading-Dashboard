@@ -79,9 +79,6 @@ The dashboard reads data from the following file structure:
 
 ```
 results/
-├── comparison/
-│   ├── sharpe_comparison.csv
-│   └── sharpe_comparison.html
 └── [STOCK_TICKER]/
     └── [STOCK_TICKER]_backtest_results/
         ├── equity_curve.csv
