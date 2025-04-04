@@ -582,30 +582,6 @@ def main():
         stock_result = run_backtest(stock)
         if stock_result:
             results[stock] = stock_result
-    
-    # Compare results across stocks
-    if results:
-        sharpe_ratios = {stock: result['sharpe_ratio'] for stock, result in results.items()}
-        
-        # Print comparison
-        print("\nSharpe Ratio Comparison:")
-        for stock, sharpe in sorted(sharpe_ratios.items(), key=lambda x: x[1], reverse=True):
-            print(f"{stock}: {sharpe:.4f}")
-        
-        # Plot comparison
-        sharpe_df = pd.DataFrame({
-            'Stock': list(sharpe_ratios.keys()),
-            'Sharpe Ratio': list(sharpe_ratios.values())
-        })
-        
-        # Save comparison results
-        comparison_dir = os.path.join('results', 'comparison')
-        os.makedirs(comparison_dir, exist_ok=True)
-        sharpe_df.to_csv(os.path.join(comparison_dir, "sharpe_comparison.csv"), index=False)
-        
-        # Plot comparison
-        fig = px.bar(sharpe_df, x='Stock', y='Sharpe Ratio', title='Sharpe Ratio Comparison')
-        fig.write_html(os.path.join(comparison_dir, "sharpe_comparison.html"))
 
 
 if __name__ == "__main__":

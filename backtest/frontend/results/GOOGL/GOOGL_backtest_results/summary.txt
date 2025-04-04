@@ -1,7 +1,7 @@
 Backtest Results Summary
 ======================
 
-Generated on: 2025-04-02 21:41:42
+Generated on: 2025-04-04 12:50:55
 
 Sharpe Ratio: -3.95271500618077
 
