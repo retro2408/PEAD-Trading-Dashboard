@@ -18,7 +18,7 @@ The notebook has been divided into 4 tasks, for each of which we have explained 
 ```
 2. Getting Earnings Dates, EPS Estimates, Surprises, Reported EPS from yfinance and then merging with the financial statements data.
 3. Checking for multi-collinearity and using VIF Filtering to drop insignificant attributes. In addition, shifting the EPS tuples by 1 so that the regression model can be trained properly.
-4. Finally conducting multi-variate regression for all stocks and making their regression models.
+4. Finally conducting multi-variate regression for all stocks and making their regression models. In this Task their are two code cells, the first one performs the regression and then produces the regression summary, also showcasing the latest predictions on the latest earnings dates. The second cell uses this regression model to make predicitions on the previous earnings dates as well, as these predictions were required in the backtest to check how good the regression was performing.
 
 ### backtest.py
 The backtest.py file simulates the trades for the past 10 years on all stocks, makes the visualizations and provides us with the results which are populated on the dashboard. The results are populated in the following directory structure: 
@@ -31,6 +31,9 @@ The backtest.py file simulates the trades for the past 10 years on all stocks, m
             └── [STOCK_TICKER]/
                 └── [STOCK_TICKER]_backtest_results
 ```
+
+#### Libraries Used
+numpy, pandas, backtrader, backtrader.analyzers, yfinance, plotly.express
 
 
 ### frontend
