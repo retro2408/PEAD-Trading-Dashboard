@@ -1,7 +1,7 @@
 # Post Earnings Announcement Drift Trading Dashboard
 
 The project uses the Post Earnings Announcement Drift (PEAD) anomaly to generate trade recommendations by analyzing earnings surprises both through regression and by comparing with analyst estimates. A web-based interface displays these recommendations and 10 years of backtesting results. 
-
+https://github.com/user-attachments/assets/f63caec3-9973-4fac-a679-18e3f5211c7b 
 ## User Guide
 ### CleanPEADReg.ipynb
 This jupyter notebook is the place where we have collected, preprocessed and created a regression model for all the 5 stocks ["NVDA","GOOGL","MSFT","GME","GS"]. 
