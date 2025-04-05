@@ -80,7 +80,7 @@ A beautiful interactive frontend to visualize the results of PEAD (Post-Earnings
 
 ## Quick Start
 
-This is a static HTML/CSS/JavaScript frontend - no build steps required! Just open the `index.html` file in your browser.
+This is a static HTML/CSS/JavaScript frontend - no build steps required! Just open the `index.html` file in your browser or download the LiveServer extension on VSCode and click "Go Live" on the bottom right hand corner to see our dashboard.
 
 ```bash
 # Windows (CMD)
