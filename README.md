@@ -113,18 +113,6 @@ results/
         └── trade_outcomes.csv
 ```
 
-## Customizing
-
-### Adding New Stocks
-
-To add a new stock to the dashboard:
-
-1. Add the stock data to the `stockData` object in `js/main.js`
-2. Add the stock as an option in the select dropdown in `index.html`
-
-### Modifying Charts
-
-All charts are created using ApexCharts.js. You can customize charts by modifying their options in the `js/main.js` file.
 
 ## Technical Details
 
