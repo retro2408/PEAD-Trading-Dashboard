@@ -9,8 +9,12 @@ https://github.com/user-attachments/assets/f63caec3-9973-4fac-a679-18e3f5211c7b
 ### CleanPEADReg.ipynb
 This jupyter notebook is the place where we have collected, preprocessed and created a regression model for all the 5 stocks ["NVDA","GOOGL","MSFT","GME","GS"]. 
 
+In order to run each cell in the jupyter notebook the user needs various different libraries and functions from them which are listed below: 
+#### Libraries and Functions Used
+numpy, pandas, os, requests, yfinance, from statsmodels.stats.outliers_influence import variance_inflation_factor and statsmodels.api 
+
 The notebook has been divided into 4 tasks, for each of which we have explained the technicalities and best user practices:
-1. Getting Data from AlphaVantage API and Cleaning: The financial data such as balance sheets, income statements and cash flow statements is collected from AlphaVantage using an API key, which has a rate limit on it. Therefore to make it easy for the user we have already the historical data has already been populated in the financial statements directory, the structure for the same has been shown below. Furthermore,the user can run any code cell below the first one in "CleanPEADReg.ipynb" to clean the financial data again, perform multi-collinearity checks, and create the regression model again. : 
+1. Getting Data from AlphaVantage API and Cleaning: The financial data such as balance sheets, income statements and cash flow statements are collected from AlphaVantage using an API key, which has a rate limit on it. Therefore to make it easy for the user we have already extracted the historical data and populated it in the financial statements directory, the structure for the same has been shown below. Furthermore,the user can run any code cell below the first one in "CleanPEADReg.ipynb" to clean the financial data again, perform multi-collinearity checks, and create the regression model again. : 
 
 ```
 .
@@ -19,12 +23,12 @@ The notebook has been divided into 4 tasks, for each of which we have explained 
     ├── [STOCK_TICKER]_income_statement.csv
     └── [STOCK_TICKER]_cash_flow.csv
 ```
-2. Getting Earnings Dates, EPS Estimates, Surprises, Reported EPS from yfinance and then merging with the financial statements data.
-3. Checking for multi-collinearity and using VIF Filtering to drop insignificant attributes. In addition, shifting the EPS tuples by 1 so that the regression model can be trained properly.
-4. Finally conducting multi-variate regression for all stocks and making their regression models. In this Task their are two code cells, the first one performs the regression and then produces the regression summary, also showcasing the latest predictions on the latest earnings dates. The second cell uses this regression model to make predicitions on the previous earnings dates as well, as these predictions were required in the backtest to check how good the regression was performing.
+2. Getting Earnings Dates, EPS Estimates, Surprises, Reported EPS and Merging: In this task, we get the earnings dates from yfinance and then merge it with the financial statement data we cleaned in Task 1.  
+3. Checking for multi-collinearity and shifting EPS by a Quarter to make accurate predictions: Here we do  VIF Filtering to drop insignificant attributes and shift the tuples by 1 so that the regression model can be trained properly.
+4. Finally conducting multi-variate regression for all stocks and making their regression models. In this task there are two code cells, the first one performs the regression and then produces the regression summary, also showcasing the latest predictions on the latest earnings dates. The second cell uses this regression model to make predicitions on the previous earnings dates as well, as these predictions were required in the backtest to check how good the regression was performing.
 
 ### backtest.py
-The backtest.py file simulates the trades for the past 10 years on all stocks, makes the visualizations and provides us with the results which are populated on the dashboard. The results are populated in the following directory structure: 
+The backtest.py file which is located under the backtest folder, carries out the trades for the past 10 years on all stocks, generates the csvs for the visualizations and provides us with the results which are populated on the dashboard. The results are populated in the following directory structure: 
 
 ```
 .
@@ -34,13 +38,26 @@ The backtest.py file simulates the trades for the past 10 years on all stocks, m
             └── [STOCK_TICKER]/
                 └── [STOCK_TICKER]_backtest_results
 ```
+In order to run backtest.py the user would need to install the following directories on their local machine: 
 
 #### Libraries Used
 numpy, pandas, backtrader, backtrader.analyzers, yfinance, plotly.express
 
 
 ### frontend
-Once the results are populated, main.js pulls them and uses to them to display our results on the dashboard. Below we go into more depth in the dashboard functionality itself. 
+Once the results are populated, main.js pulls them and uses to them to display our results on the dashboard. Below we go into more depth in the dashboard functionality itself. The HTML, CSS and JS for the project is available under the following directory structure: 
+
+```
+.
+└── backtest/
+    └── frontend/
+        ├── css/
+        │   └── style.css
+        ├── js/
+        │   └── main.js
+        ├── results
+        └── index.html
+```
 
 # PEAD Regression Dashboard
 A beautiful interactive frontend to visualize the results of PEAD (Post-Earnings Announcement Drift) regression backtests.
